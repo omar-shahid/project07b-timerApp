@@ -1,0 +1,189 @@
+
+$pulse: var(--color) 
+$background: #2D3436
+$main-text: $pulse
+$year-text: #5D5E5F
+$side-text: #FFFFFF
+$clock-bg: #465255
+$pulse-70: var(--light-color)
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+
+body
+    background-color: $background
+    height: 100%
+    width: 100%
+    --color: rgb(0, 145, 255)
+    --light-color: rgba(0, 145, 255, 0.7)
+    overflow: hidden
+
+
+#clock
+    display: flex
+    height: 100vh
+    width: 100vw
+    justify-content: center
+    align-items: center
+    position: relative
+    .pulse, .clock-bg
+        position: absolute
+
+.pulse
+    width: 76vh
+    height: 76vh
+    background-color: $pulse
+    border-radius: 50%
+    animation: pulse 3s infinite ease-in;
+    animation-fill-mode: forwards;
+    //transition: all .2s linear
+
+
+.clock-bg
+    width: 70vh
+    height: 70vh
+    background-color: $clock-bg
+    border-radius: 50%
+    display: flex
+    justify-content: center
+    align-items: center
+    div
+        height: 80% 
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+    #main-clock
+        display: flex
+        justify-content: center
+        margin: 0 auto
+        h1
+            font-family: 'Roboto Mono', monospace
+            font-style: normal;
+            font-weight: 100;
+            font-size: 100px;
+            color: $main-text
+            width: 100%
+            overflow: auto
+
+    .am-or-pm, .date
+        text-align: center
+        color: $side-text
+        font-family: Roboto;
+        font-style: normal
+        font-weight: normal
+        display: block
+    .am-or-pm
+        font-size: 36px
+    .date
+        font-size: 26px
+
+.year
+    position: absolute
+    font-family: Roboto
+    font-style: normal
+    font-weight: normal
+    font-size: 140px
+    right: 0
+    writing-mode: tb-rl
+    text-orientation: upright
+    overflow: hidden
+    color: $year-text
+
+@keyframes pulse
+    0%
+        transform: scale(.95)
+        box-shadow: 0px 0px 5px 5px $pulse-70
+    70%
+        transform: scale(1.01)
+        box-shadow: 0px 0px 10px 20px $pulse-70
+
+    100%
+        transform: scale(.95)
+        box-shadow: 0px 0px 5px 5px $pulse-70
+
+// @media screen and ( max-width: 700px )
+//     .year
+//         writing-mode: horizontal-tb
+//         text-orientation: 
+//         bottom: 0
+//         font-size: 50px
+//         left: auto !important
+//         text-align: center
+//         display: block
+//         width: 100%
+
+    #main-clock h1
+        width: 100% !important
+        font-size: 60px !important
+
+    .clock-bg, .pulse
+        width: 50vh
+        height: 50vh
+
+    .am-or-pm, .date
+        font-size: 18px !important
+        
+@media screen and ( max-width: 900px )
+    #main-clock h1
+        width: 100% !important
+        font-size: 70px !important
+    .clock-bg, .pulse
+        width: 50vh
+        height: 50vh
+    
+
+    .am-or-pm, .date
+        font-size: 16px !important
+
+@media screen and ( max-width: 400px )
+    .clock-bg, .pulse
+        width: 40vh
+        height: 40vh
+
+@media screen and ( max-width: 600px )
+	.year
+			writing-mode: horizontal-tb
+			text-orientation: 
+			bottom: 0
+			font-size: 8em !important
+			left: auto !important
+			text-align: center
+			display: block
+			width: 100%
+	
+
+@media screen and ( min-width: 900px ) and (max-width: 1244px)
+    .clock-bg, .pulse
+        width: 65vh
+        height: 65vh
+    #main-clock h1
+        width: 100% !important
+        font-size: 80px !important
+  
+    .am-or-pm, .date
+        font-size: 28px !important
+
+#choose-color
+    width: 100vw
+    min-height: 25vh
+    display: none
+    position: absolute
+    z-index: 1000
+    &.active
+        display: flex !important
+.color-box
+    height: 30px
+    width: 400px
+    transition: all .5s ease-in-out
+    &:hover
+        cursor: pointer 
+        filter: brightness(80%)
+.toggle-color
+    color: white
+    text-align: right
+    padding: 16px;
+    
+    &:hover
+        cursor: pointer
